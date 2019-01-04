@@ -15,6 +15,11 @@ self.addEventListener('install', function(event) {
   );
 });
 
+self.addEventListener('controllerchange', () => {
+  console.log(1111)
+  window.location.reload()
+})
+
 // 缓存更新
 self.addEventListener('activate', function(event) {
   console.log('activate')
