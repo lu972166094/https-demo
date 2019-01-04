@@ -29,7 +29,9 @@ if ('serviceWorker' in navigator) {
 	$('#isSupport').text('支持');
 
 	// 开始注册service workers
-	navigator.serviceWorker.register('./sw-demo-cache.js').then(function (registration) {
+	navigator.serviceWorker.register('./sw-demo-cache.js', {
+		scope: './'
+	}).then(function (registration) {
 		$('#isSuccess').text('注册成功');
 
         var serviceWorker;
