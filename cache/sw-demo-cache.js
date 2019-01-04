@@ -21,8 +21,6 @@ self.addEventListener('activate', function(event) {
   console.log(VERSION)
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
-      console.log(cacheNames);
-      console.log(VERSION)
       return Promise.all(
         cacheNames.map(function(cacheName) {
           // 如果当前版本和缓存版本不一致
