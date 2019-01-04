@@ -1,9 +1,8 @@
-var VERSION = 'v21';
+var VERSION = 'v22';
 
 // 缓存
 self.addEventListener('install', function(event) {
-  console.log('install')
-  console.log(VERSION)
+  console.log('install: ' + VERSION)
   self.skipWaiting();
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
@@ -23,16 +22,14 @@ self.addEventListener('controllerchange', () => {
 
 // 缓存更新
 self.addEventListener('activate', function(event) {
-  console.log('activate')
-  console.log(VERSION)
+  console.log('activate: ' + VERSION)
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       return Promise.all(
         cacheNames.map(function(cacheName) {
           // 如果当前版本和缓存版本不一致
           if (cacheName !== VERSION) {
-            console.log('delete')
-            console.log(cacheName)
+            console.log('delete:' + cacheName)
             return caches.delete(cacheName);
           }
         })
