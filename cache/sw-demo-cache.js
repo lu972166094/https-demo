@@ -2,6 +2,7 @@ var VERSION = 'v6';
 
 // 缓存
 self.addEventListener('install', function(event) {
+  console.log(111)
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
       return cache.addAll([
