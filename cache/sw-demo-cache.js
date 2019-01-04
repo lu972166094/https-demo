@@ -48,7 +48,7 @@ self.addEventListener('activate', function(event) {
 //   }));
 // });
 self.addEventListener('fetch', function(e) {
-  console.log('Fetch event ' + cacheStorageKey + ' :', e.request.url);
+  console.log('Fetch event ' + VERSION + ' :', e.request.url);
   e.respondWith( // 该策略先从网络中获取资源，如果获取失败则再从缓存中读取资源
     fetch(e.request.url)
     .then(function (httpRes) {
@@ -61,7 +61,7 @@ self.addEventListener('fetch', function(e) {
 
       // 请求成功的话，将请求缓存起来。
       var responseClone = httpRes.clone();
-      caches.open(cacheStorageKey).then(function (cache) {
+      caches.open(VERSION).then(function (cache) {
           return cache.delete(e.request)
           .then(function() {
               cache.put(e.request, responseClone);
