@@ -25,6 +25,43 @@
 
 <script src="./static/jquery.min.js"></script>
 <script>
+let db
+// 参数1位数据库名，参数2为版本号
+const request = window.indexedDB.open("xiaoceDB", 1)
+// 使用IndexDB失败时的监听函数
+request.onerror = function(event) {
+		console.log('无法使用IndexDB')
+	}
+// 成功
+request.onsuccess  = function(event){
+	// 此处就可以获取到db实例
+	db = event.target.result
+	console.log("你打开了IndexDB")
+}
+
+request.onupgradeneeded = function(event){
+  let objectStore
+  // 如果同名表未被创建过，则新建test表
+  if (!db.objectStoreNames.contains('test')) {
+    objectStore = db.createObjectStore('test', { keyPath: 'id' })
+  }
+}
+
+const transaction = db.transaction(["test"],"readwrite")
+// 拿到Object Store对象
+const objectStore = transaction.objectStore("test")
+// 向表格写入数据
+objectStore.add({id: 1, name: 'xiuyan'})
+
+// 操作成功时的监听函数
+transaction.oncomplete = function(event) {
+	console.log("操作成功")
+}
+// 操作失败时的监听函数
+transaction.onerror = function(event) {
+	console.log("这里有一个Error")
+}
+
 if ('serviceWorker' in navigator) {
 	$('#isSupport').text('支持');
 
