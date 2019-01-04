@@ -1,4 +1,4 @@
-var VERSION = 'v16';
+var VERSION = 'v17';
 
 // 缓存
 self.addEventListener('install', function(event) {
