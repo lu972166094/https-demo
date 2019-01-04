@@ -16,6 +16,7 @@ self.addEventListener('install', function(event) {
 
 // 缓存更新
 self.addEventListener('activate', function(event) {
+  console.log(222)
   event.waitUntil(
     caches.keys().then(function(cacheNames) {
       console.log(cacheNames);
