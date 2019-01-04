@@ -75,4 +75,4 @@ self.addEventListener('fetch', function(e) {
       return caches.match(e.request);
     })
   )
-}
+})
