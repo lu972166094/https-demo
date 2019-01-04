@@ -1,9 +1,10 @@
-var VERSION = 'v18';
+var VERSION = 'v19';
 
 // 缓存
 self.addEventListener('install', function(event) {
   console.log('install')
   console.log(VERSION)
+  self.skipWaiting();
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
       return cache.addAll([
