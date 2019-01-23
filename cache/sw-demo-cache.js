@@ -1,18 +1,18 @@
-var VERSION = 'v25';
+var VERSION = 'v25'
 
 // 缓存
 self.addEventListener('install', function(event) {
   console.log('install: ' + VERSION)
-  self.skipWaiting();
+  self.skipWaiting()
   event.waitUntil(
     caches.open(VERSION).then(function(cache) {
       return cache.addAll([
         './start.html',
         './static/jquery.min.js',
         './static/mm1.jpg'
-      ]);
+      ])
     })
-  );
+  )
 });
 
 self.addEventListener('controllerchange', () => {
